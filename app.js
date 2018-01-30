@@ -1,4 +1,6 @@
 const express = require('express');
+const sqlite = require('sqlite');
+const Promise = require('bluebird');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 8080;
@@ -23,6 +25,17 @@ app.get('/posts', function (req, res) {
  app.post('/post', function (req, res) {
    res.send("POST to database");
  })
+
+ // open db
+ Promise.resolve()
+   .then(() => {
+     if ( process.env.NODE_ENV == 'test') {
+       dbPromise = sqlite.open('./test.db', { Promise });
+     } else {
+       dbPromise = sqlite.open('./blog.db', { Promise });
+     }
+   })
+   .catch((err) => console.error(err.stack));
 
 //start listening
 app.listen(port, () => console.log('Listening on port ' + port));
