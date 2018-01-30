@@ -1,0 +1,24 @@
+{
+  "name": "blogpostapi",
+  "version": "1.0.0",
+  "description": "Blog post API",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha --timeout 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schottec/blogpostapi.git"
+  },
+  "keywords": [
+    "blog",
+    "post",
+    "api"
+  ],
+  "author": "Evan Schott",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/schottec/blogpostapi/issues"
+  },
+  "homepage": "https://github.com/schottec/blogpostapi#readme"
+}
