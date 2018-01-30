@@ -11,6 +11,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
      curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
      apt-get install -y nodejs
+     npm install forever -g
+     cd /vagrant && npm install
+     forever start app.js
    SHELL
 
 end
