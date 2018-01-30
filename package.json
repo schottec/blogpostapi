@@ -20,5 +20,18 @@
   "bugs": {
     "url": "https://github.com/schottec/blogpostapi/issues"
   },
-  "homepage": "https://github.com/schottec/blogpostapi#readme"
+  "homepage": "https://github.com/schottec/blogpostapi#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "nan": "^2.4.0",
+    "sqlite": "^2.9.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "*",
+    "mocha": "^5.0.0",
+    "nodemon": "^1.14.11"
+  }
 }
