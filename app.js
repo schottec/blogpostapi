@@ -28,8 +28,21 @@ app.use(bodyParser.json());
  * @param title
  * @param body
  */
- app.post('/post', function (req, res) {
-   res.send("POST to database");
+ app.post('/post', async (req, res, next) => {
+   res.setHeader('Content-Type', 'application/json');
+   var title = req.body.title || null;
+   var body = req.body.body || null;
+
+   //db allows posting null values, so we have to catch them here
+   if (!(title && body)) {
+     res.status(400).send({
+       "message":"Invalid request",
+       "title":title,
+       "body":body
+     });
+   } else {
+     res.send("POST successful");
+   }
  })
 
  // open db
