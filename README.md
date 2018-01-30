@@ -22,6 +22,59 @@ for persistent data.
     * body (required)
 
 
-# How to deploy and run the API
+# How to deploy and run the Blog Post API
+There are two methods provided to deploy and run the Blog Post API, depending on
+your preference or which environment you have available. Both methods assume you
+already have the appropriate Vagrant or Docker environments installed and
+running, and have cloned the repository to your local environment.
 
-1. Using Vagrant
+* Using Vagrant
+  1. From the main project directory, run
+     $ vagrant up
+  2. Once finished, proceed to test the API endpoints (see examples below)
+  3. When done testing, run:
+     $ vagrant halt
+
+* Using Docker
+  1. From the main project directory, first build the Docker image:
+     $ docker build -t <NAME> .
+  2. Next, run the docker image:
+     $ docker run -p <PORT>:8080 -d <NAME>
+  3. Proceed to test the API endpoints (see example below)
+
+# Example tests
+
+/GET
+$curl -X GET 'http://localhost:8080/posts'
+
+example response:
+[
+    {
+        "post_id": 1,
+        "title": "hai",
+        "body": "hai"
+    },
+    {
+        "post_id": 2,
+        "title": "Sample Title",
+        "body": "Sample body 1"
+    }
+]
+
+/POST
+curl -X POST \
+  http://localhost:8080/post \
+  -H 'content-type: application/json' \
+  -d '{
+	"title": "Sample Title",
+	"body": "Sample body 1"
+}'
+
+example response:
+{
+    "stmt": {
+        "sql": "INSERT INTO posts VALUES ($id, $title, $body)",
+        "lastID": 2,
+        "changes": 1
+    }
+}
