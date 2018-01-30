@@ -4,7 +4,8 @@
   "description": "Blog post API",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --timeout 10000"
+    "test": "mocha --timeout 10000",
+    "blogpostapp": "nodemon app.js"
   },
   "repository": {
     "type": "git",
