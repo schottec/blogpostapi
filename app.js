@@ -14,9 +14,15 @@ app.use(bodyParser.json());
 /* GET
  * Returns all posts as JSON array
  */
-app.get('/posts', function (req, res) {
-  res.send("GET request");
-})
+ app.get('/posts', async (req, res, next) => {
+   try {
+     const db = await dbPromise;
+     const posts = await db.all('SELECT * from posts');
+     res.send(posts);
+   } catch (err) {
+     next(err);
+   }
+ })
 
 /* POST
  * @param title
