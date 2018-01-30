@@ -7,6 +7,13 @@ const port = 8080;
 
 // parse incoming JSON
 app.use(bodyParser.json());
+app.use(function (err, req, res, next) {
+  if (err instanceof SyntaxError) {
+    res.send(err);
+  } else {
+    next();
+  }
+});
 
 /*****ROUTES******/
 /* Including routes in app.js for simplicity and readability */
