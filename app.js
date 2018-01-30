@@ -41,7 +41,17 @@ app.use(bodyParser.json());
        "body":body
      });
    } else {
-     res.send("POST successful");
+     try {
+       const db = await dbPromise;
+       const post = await db.run("INSERT INTO posts VALUES ($id, $title, $body)", {
+         $id: null,
+         $title: req.body.title,
+         $body: req.body.body
+       });
+       res.send(post);
+     } catch (err) {
+       res.send(err);
+     }
    }
  })
 
